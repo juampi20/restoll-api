@@ -1,7 +1,7 @@
-package github.juampi20.wineshop.controller;
+package github.juampi20.restoll.controller;
 
-import github.juampi20.wineshop.entity.Product;
-import github.juampi20.wineshop.service.ProductService;
+import github.juampi20.restoll.entity.Product;
+import github.juampi20.restoll.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

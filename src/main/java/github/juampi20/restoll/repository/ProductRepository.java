@@ -1,6 +1,6 @@
-package github.juampi20.wineshop.repository;
+package github.juampi20.restoll.repository;
 
-import github.juampi20.wineshop.entity.Product;
+import github.juampi20.restoll.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

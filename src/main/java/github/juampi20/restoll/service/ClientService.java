@@ -1,7 +1,7 @@
-package github.juampi20.wineshop.service;
+package github.juampi20.restoll.service;
 
-import github.juampi20.wineshop.entity.Client;
-import github.juampi20.wineshop.repository.ClientRepository;
+import github.juampi20.restoll.entity.Client;
+import github.juampi20.restoll.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package github.juampi20.wineshop.entity;
+package github.juampi20.restoll.entity;
 
 import javax.persistence.*;
 

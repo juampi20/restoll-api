@@ -1,13 +1,11 @@
-package github.juampi20.wineshop.service;
+package github.juampi20.restoll.service;
 
-import github.juampi20.wineshop.entity.Product;
-import github.juampi20.wineshop.entity.Product;
-import github.juampi20.wineshop.repository.ProductRepository;
+import github.juampi20.restoll.entity.Product;
+import github.juampi20.restoll.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
