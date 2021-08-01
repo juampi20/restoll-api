@@ -1,6 +1,7 @@
 package github.juampi20.restoll.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -43,7 +44,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(float price, String type) {
+    public Product(Long id, float price, String type) {
+        this.id = id;
         this.price = price;
         this.type = type;
     }

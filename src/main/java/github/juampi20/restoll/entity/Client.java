@@ -1,10 +1,9 @@
 package github.juampi20.restoll.entity;
 
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "client")
 public class Client {
 
     @Id
@@ -20,6 +19,18 @@ public class Client {
 
     @Column(name = "phone", nullable = false, unique = true)
     private String phone;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", unique = true)
+    private Cart cart;
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public Long getId() {
         return id;
@@ -56,10 +67,11 @@ public class Client {
     public Client() {
     }
 
-    public Client(Long id, String name, String address, String phone) {
+    public Client(Long id, String name, String address, String phone, Cart cart) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
+        this.cart = cart;
     }
 }
