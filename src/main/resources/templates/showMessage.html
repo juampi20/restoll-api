@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Result</title>
+</head>
+<body>
+
+<p th:text="'Client Order: ' + ${orderProduct.order.client.name}"></p>
+<p th:text="'Product: ' + ${orderProduct.product.name}"></p>
+<p th:text="'Quantity: ' + ${orderProduct.quantity}"></p>
+<p th:text="'Price: ' + ${orderProduct.getTotalPrice()}"></p>
+<a href="addProduct">Submit another message</a>
+
+</body>
+</html>

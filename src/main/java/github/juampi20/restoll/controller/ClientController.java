@@ -3,6 +3,8 @@ package github.juampi20.restoll.controller;
 import github.juampi20.restoll.entity.Client;
 import github.juampi20.restoll.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,42 +13,35 @@ import java.util.List;
 @RequestMapping("/api/clients")
 public class ClientController {
 
-    private final ClientService clientService;
-
     @Autowired
-    ClientController(ClientService clientService) {
-        this.clientService = clientService;
-    }
+    ClientService clientService;
 
     @GetMapping
-    public List<Client> findAll() {
-        return clientService.findAll();
+    public ResponseEntity<List<Client>> getAllClients() {
+        return new ResponseEntity<>(clientService.getAllClients(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Client findById(@PathVariable Long id) {
-        Client client = clientService.findById(id);
-
-        if (client == null) {
-            throw new RuntimeException("Client not found:" + id);
-        }
-
-        return client;
+    public ResponseEntity<Object> getClient(@PathVariable Long id) {
+        return new ResponseEntity<>(clientService.getClient(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public Client create(@RequestBody Client newClient) {
-        return clientService.save(newClient);
+    public ResponseEntity<Object> createClient(@RequestBody Client newClient) {
+        clientService.save(newClient);
+        return new ResponseEntity<>("Client is created successfully", HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public Client update(@RequestBody Client newClient, @PathVariable Long id) {
-        return clientService.update(newClient, id);
+    public ResponseEntity<Object> updateClient(@RequestBody Client newClient, @PathVariable Long id) {
+        clientService.updateClient(newClient, id);
+        return new ResponseEntity<>("Client is updated successfully", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        clientService.deleteById(id);
+    public ResponseEntity<Object> deleteClient(@PathVariable Long id) {
+        clientService.deleteClient(id);
+        return new ResponseEntity<>("Client is deleted successfully", HttpStatus.OK);
     }
 
 }

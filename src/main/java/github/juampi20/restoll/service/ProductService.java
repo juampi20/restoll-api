@@ -5,45 +5,41 @@ import github.juampi20.restoll.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class ProductService {
 
-    private final ProductRepository productRepository;
-
     @Autowired
-    ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+    ProductRepository productRepository;
 
-    public List<Product> findAll() {
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public Product findById(Long id) {
-        return productRepository.findById(id).orElseGet(null);
+    public Optional<Product> getProduct(Long id) {
+        return productRepository.findById(id);
     }
 
-    public Product save(Product product) {
-        return productRepository.save(product);
+    public void save(Product product) {
+        productRepository.save(product);
     }
 
-    public void deleteById(Long id) {
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 
-    public Product update(Product newProduct, Long id) {
-        return productRepository.findById(id)
+    public void updateProduct(Long id, Product newProduct) {
+        productRepository.findById(id)
                 .map(product -> {
+                    product.setName(newProduct.getName());
                     product.setPrice(newProduct.getPrice());
                     product.setType(newProduct.getType());
+                    product.setStock(newProduct.getStock());
                     return productRepository.save(product);
-                })
-                .orElseGet(() -> {
-                    newProduct.setId(id);
-                    return productRepository.save(newProduct);
                 });
     }
-
 }

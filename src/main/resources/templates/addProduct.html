@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Product</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>Add Product to Order</h1>
+
+<form action="#" th:action="@{/api/addProduct}" th:object="${orderProduct}" method="post">
+    <table>
+        <tr>
+            <th>Client Order</th>
+            <td>
+                <select th:field="*{order}">
+                    <option th:each="dropDownItem: ${orderList}"
+                            th:value="${#conversions.convert(dropDownItem.id, 'Long')}"
+                            th:text="${dropDownItem.client.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Product</th>
+            <td>
+                <select th:field="*{product}">
+                    <option th:each="dropDownItem: ${productList}"
+                            th:value="${#conversions.convert(dropDownItem.id, 'Long')}"
+                            th:text="${dropDownItem.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td><input type="number" th:field="*{quantity}" class="form-control"/></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"></p>
+</form>
+
+</body>
+</html>

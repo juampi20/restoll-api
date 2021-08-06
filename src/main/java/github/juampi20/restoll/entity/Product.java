@@ -1,21 +1,37 @@
 package github.juampi20.restoll.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "price", nullable = false)
-    private float price;
+    private Double price;
 
     @Column(name = "type", nullable = false)
     private String type;
+
+    @Column(name = "stock")
+    private Integer stock;
+
+
+    public Product() {
+    }
+
+    public Product(String name, Double price, String type, Integer stock) {
+        this.name = name;
+        this.price = price;
+        this.type = type;
+        this.stock = stock;
+    }
 
     public Long getId() {
         return id;
@@ -25,11 +41,19 @@ public class Product {
         this.id = id;
     }
 
-    public float getPrice() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -41,12 +65,11 @@ public class Product {
         this.type = type;
     }
 
-    public Product() {
+    public Integer getStock() {
+        return stock;
     }
 
-    public Product(Long id, float price, String type) {
-        this.id = id;
-        this.price = price;
-        this.type = type;
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }

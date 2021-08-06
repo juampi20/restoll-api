@@ -1,9 +1,11 @@
 package github.juampi20.restoll.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "client")
+@Table(name = "clients")
 public class Client {
 
     @Id
@@ -20,16 +22,19 @@ public class Client {
     @Column(name = "phone", nullable = false, unique = true)
     private String phone;
 
+    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_id", unique = true)
-    private Cart cart;
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    public Cart getCart() {
-        return cart;
+
+    public Client() {
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public Client(String name, String address, String phone) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
     }
 
     public Long getId() {
@@ -64,14 +69,11 @@ public class Client {
         this.phone = phone;
     }
 
-    public Client() {
+    public Order getOrder() {
+        return order;
     }
 
-    public Client(Long id, String name, String address, String phone, Cart cart) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.cart = cart;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
